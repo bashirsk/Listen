@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     
@@ -40,7 +41,16 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        let url = "https://itunes.apple.com/search?term=\(searchText)"
+        Alamofire.request(url).responseData { (pDataResponse) in
+            if let error = pDataResponse.error {
+                print("Failed to contact Yahoo", error)
+            }
+            
+            guard let data = pDataResponse.data else { return }
+            let dummyString = String(data: data, encoding: .utf8)
+            print(dummyString)
+        }
     }
     
     //MARK:- UITableView delete methods
