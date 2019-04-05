@@ -11,10 +11,7 @@ import Alamofire
 
 class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     
-    var podcast = [
-        Podcast(trackName: "Ruby Rogues", artistName: "Jay Maxwell"),
-        Podcast(trackName: "Simple Programmer", artistName: "John Somnez")
-    ]
+    var podcast = [Podcast]()
     
     let cellID = "cellID"
     
@@ -38,34 +35,16 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.searchBar.delegate = self
+        self.searchController.definesPresentationContext = true 
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let url = "https://itunes.apple.com/search"
-        let parameters = ["term": searchText, "media": "podcast"]
-        
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (pDataResponse) in
-            if let error = pDataResponse.error {
-                print("Failed to contact Web API", error)
-            }
-            guard let data = pDataResponse.data else { return }
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
-                searchResult.results.forEach({ (pPodcast) in
-                    print(pPodcast.artistName ?? "", pPodcast.trackName ?? "")
-                })
-                self.podcast = searchResult.results
-                self.tableView.reloadData()
-            } catch let decodeError {
-                print("Failed to decode", decodeError)
-            }
+        APIService.shared.fetchPodcasts(searchString: searchText) { (pPodcast) in
+            self.podcast = pPodcast
+            self.tableView.reloadData()
         }
     }
     
-    struct SearchResults: Decodable  {
-        let resultCount: Int
-        let results: [Podcast]
-    }
     
     //MARK:- UITableView delete methods
     
