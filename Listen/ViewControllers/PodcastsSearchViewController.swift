@@ -29,6 +29,7 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     private func setupTableView() {
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: cellID)
+        self.tableView.tableFooterView = UIView()
     }
     
     private func setUpSearchBar() {
@@ -49,6 +50,19 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK:- UITableView delete methods
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a Search Term"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = .purple
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 250
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.podcast.count
     }
@@ -57,7 +71,6 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: pIndexPath) as! PodcastCell
         let podcast = self.podcast[pIndexPath.row]
         cell.podcast = podcast
-        
         return cell
     }
     

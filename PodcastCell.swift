@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PodcastCell: UITableViewCell {
     
@@ -19,15 +20,10 @@ class PodcastCell: UITableViewCell {
         didSet {
             self.trackNameLabel.text = podcast.trackName
             self.artistNameLabel.text = podcast.artistName
+            self.episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
+            self.podcastImageView.ls_downloadAndCacheImage(with: podcast.artworkUrl600 ?? "")
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
+    
 }
