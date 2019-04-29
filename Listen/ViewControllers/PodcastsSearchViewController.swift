@@ -11,10 +11,8 @@ import Alamofire
 
 class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     
-    var podcast = [Podcast]()
-    
+    var podcasts = [Podcast]()
     let cellID = "cellID"
-    
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -22,7 +20,6 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
         self.setUpSearchBar()
         self.setupTableView()
     }
-    
     
     //MARK:- Set up
     
@@ -33,6 +30,7 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     private func setUpSearchBar() {
+        self.definesPresentationContext = true
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.searchController.dimsBackgroundDuringPresentation = false
@@ -41,8 +39,8 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        APIService.shared.fetchPodcasts(searchString: searchText) { (pPodcast) in
-            self.podcast = pPodcast
+        APIService.shared.fetchPodcasts(searchString: searchText) { pPodcast, _ in
+            self.podcasts = pPodcast
             self.tableView.reloadData()
         }
     }
@@ -50,7 +48,7 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK:- UITableView delete methods
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ pTableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Please enter a Search Term"
         label.textAlignment = .center
@@ -59,22 +57,30 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
         return label
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 250
+    override func tableView(_ pTableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return  self.podcasts.count > 0 ? 0 : 250
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.podcast.count
+    override func tableView(_ pTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.podcasts.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt pIndexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: pIndexPath) as! PodcastCell
-        let podcast = self.podcast[pIndexPath.row]
+    override func tableView(_ pTableView: UITableView, cellForRowAt pIndexPath: IndexPath) -> UITableViewCell {
+        let cell = pTableView.dequeueReusableCell(withIdentifier: cellID, for: pIndexPath) as! PodcastCell
+        let podcast = self.podcasts[pIndexPath.row]
         cell.podcast = podcast
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ pTableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 132 
+    }
+    
+    override func tableView(_ pTableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pTableView.deselectRow(at: indexPath, animated: true)
+        let episodesController = EpisodesController()
+        let podcast = self.podcasts[indexPath.row]
+        episodesController.podcast = podcast
+        self.navigationController?.pushViewController(episodesController, animated: true)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61515BE82276B41E001CB27C /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61515BE72276B41E001CB27C /* EpisodesController.swift */; };
 		616E8D502251CD06008636F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E8D4F2251CD06008636F4 /* AppDelegate.swift */; };
 		616E8D522251CD06008636F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E8D512251CD06008636F4 /* ViewController.swift */; };
 		616E8D552251CD06008636F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 616E8D532251CD06008636F4 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		120848D759B434EA8BF9086C /* Pods-Listen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.debug.xcconfig"; sourceTree = "<group>"; };
 		29971CFE7212A33A020ADF11 /* Pods-Listen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listen.release.xcconfig"; path = "Pods/Target Support Files/Pods-Listen/Pods-Listen.release.xcconfig"; sourceTree = "<group>"; };
+		61515BE72276B41E001CB27C /* EpisodesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesController.swift; sourceTree = "<group>"; };
 		616E8D4C2251CD06008636F4 /* Listen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		616E8D4F2251CD06008636F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		616E8D512251CD06008636F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				616E8D512251CD06008636F4 /* ViewController.swift */,
 				616E8D612251CEC9008636F4 /* MainTabBarViewController.swift */,
 				616E8D6422531756008636F4 /* PodcastsSearchViewController.swift */,
+				61515BE72276B41E001CB27C /* EpisodesController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				61B5E06322644743006C3A46 /* LS+UIImageView.swift in Sources */,
 				616E8D6922531817008636F4 /* Podcast.swift in Sources */,
 				616E8D71225718D9008636F4 /* PodcastCell.swift in Sources */,
+				61515BE82276B41E001CB27C /* EpisodesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
