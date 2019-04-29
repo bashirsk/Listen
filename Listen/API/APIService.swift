@@ -13,20 +13,20 @@ class APIService {
     
     static let shared = APIService()
     
-    func fetchPodcasts(searchString: String, completion pCompletion: @escaping ([Podcast]) -> Void) {
+    func fetchPodcasts(searchString: String, completion pCompletion: @escaping ([Podcast], Error?) -> Void) {
         let url = "https://itunes.apple.com/search"
         let parameters = ["term": searchString, "media": "podcast"]
         
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (pDataResponse) in
             if let error = pDataResponse.error {
-                print("Failed to contact Web API", error)
+                pCompletion([], error)
             }
             guard let data = pDataResponse.data else { return }
             do {
                 let searchResult = try JSONDecoder().decode(Podcast.SearchResults.self, from: data)
-                pCompletion(searchResult.results)
+                pCompletion(searchResult.results, nil)
             } catch let decodeError {
-                print("Failed to decode", decodeError)
+                pCompletion([], decodeError)
             }
         }
 
