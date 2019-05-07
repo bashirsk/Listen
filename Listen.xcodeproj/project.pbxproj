@@ -20,6 +20,10 @@
 		616E8D6F22571600008636F4 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 616E8D6E22571600008636F4 /* PodcastCell.xib */; };
 		616E8D71225718D9008636F4 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E8D70225718D9008636F4 /* PodcastCell.swift */; };
 		61B5E06322644743006C3A46 /* LS+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5E06222644743006C3A46 /* LS+UIImageView.swift */; };
+		61F2100C228144B10097A82F /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2100B228144B10097A82F /* Episode.swift */; };
+		61F2100F228145680097A82F /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2100D228145680097A82F /* EpisodeCell.swift */; };
+		61F21010228145680097A82F /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61F2100E228145680097A82F /* EpisodeCell.xib */; };
+		61F21012228149270097A82F /* LS+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F21011228149270097A82F /* LS+DateFormatter.swift */; };
 		96F487977F26FD8ED2EF56AC /* Pods_Listen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56A8EAD3899727D7485911A /* Pods_Listen.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,10 @@
 		616E8D6E22571600008636F4 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		616E8D70225718D9008636F4 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		61B5E06222644743006C3A46 /* LS+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LS+UIImageView.swift"; sourceTree = "<group>"; };
+		61F2100B228144B10097A82F /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		61F2100D228145680097A82F /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		61F2100E228145680097A82F /* EpisodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
+		61F21011228149270097A82F /* LS+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LS+DateFormatter.swift"; sourceTree = "<group>"; };
 		E56A8EAD3899727D7485911A /* Pods_Listen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Listen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -113,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				616E8D6822531817008636F4 /* Podcast.swift */,
+				61F2100B228144B10097A82F /* Episode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +140,8 @@
 				616E8D532251CD06008636F4 /* Main.storyboard */,
 				616E8D6E22571600008636F4 /* PodcastCell.xib */,
 				616E8D70225718D9008636F4 /* PodcastCell.swift */,
+				61F2100D228145680097A82F /* EpisodeCell.swift */,
+				61F2100E228145680097A82F /* EpisodeCell.xib */,
 			);
 			name = Views;
 			path = ..;
@@ -140,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				61B5E06222644743006C3A46 /* LS+UIImageView.swift */,
+				61F21011228149270097A82F /* LS+DateFormatter.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -224,6 +236,7 @@
 			files = (
 				616E8D5A2251CD07008636F4 /* LaunchScreen.storyboard in Resources */,
 				616E8D572251CD07008636F4 /* Assets.xcassets in Resources */,
+				61F21010228145680097A82F /* EpisodeCell.xib in Resources */,
 				616E8D6F22571600008636F4 /* PodcastCell.xib in Resources */,
 				616E8D552251CD06008636F4 /* Main.storyboard in Resources */,
 			);
@@ -282,6 +295,9 @@
 				616E8D622251CEC9008636F4 /* MainTabBarViewController.swift in Sources */,
 				616E8D522251CD06008636F4 /* ViewController.swift in Sources */,
 				616E8D502251CD06008636F4 /* AppDelegate.swift in Sources */,
+				61F2100F228145680097A82F /* EpisodeCell.swift in Sources */,
+				61F2100C228144B10097A82F /* Episode.swift in Sources */,
+				61F21012228149270097A82F /* LS+DateFormatter.swift in Sources */,
 				616E8D6522531756008636F4 /* PodcastsSearchViewController.swift in Sources */,
 				616E8D6C2255C3EF008636F4 /* APIService.swift in Sources */,
 				61B5E06322644743006C3A46 /* LS+UIImageView.swift in Sources */,
