@@ -7,29 +7,53 @@
 //
 
 import UIKit
+import FeedKit
 
 class EpisodesController: UITableViewController {
     
     var podcast: Podcast! {
         didSet {
             self.navigationItem.title = self.podcast.trackName
+            self.fetchEpisodes { _ in }
         }
     }
     
     private let cellID = "cellId"
     
-    struct Epiosde {
+    struct Episode {
         let title: String
     }
     
-    var episodes = [
-        Epiosde(title: "First Episode"),
-        Epiosde(title: "Second Episode")
-    ]
+    var episodes = [Episode]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTableView()
+    }
+    
+    private func fetchEpisodes(completion pCompletion: @escaping (Error?) -> Void) {
+        guard let feedUrl = self.podcast.feedUrl else { return }
+        let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
+        guard let url = URL(string: secureFeedUrl) else { return }
+        let parser = FeedParser(URL: url)
+        parser.parseAsync { (pResult) in
+            switch pResult {
+            case .rss(let rssFeed):
+                rssFeed.items?.forEach({ (pRssFeedItem) in
+                    let episode = Episode(title: pRssFeedItem.title ?? "")
+                    self.episodes.append(episode)
+                    pCompletion(nil)
+                })
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                break
+            case .failure(let error):
+                pCompletion(error)
+            default:
+                break
+            }
+        }
     }
     
     //MARK:- Set up TableView
@@ -50,6 +74,10 @@ class EpisodesController: UITableViewController {
         let episode = self.episodes[pIndexPath.row]
         cell.textLabel?.text = episode.title
         return cell
+    }
+    
+    override func tableView(_ pTableView: UITableView, didSelectRowAt pIndexPath: IndexPath) {
+        pTableView.deselectRow(at: pIndexPath, animated: true)
     }
 
 }

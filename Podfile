@@ -8,5 +8,6 @@ target 'Listen' do
   # Pods for Listen
   pod 'Alamofire', '~> 4.5'
   pod 'SDWebImage', '~> 4.0'
+  pod 'FeedKit', '~> 8.0'
 
 end
