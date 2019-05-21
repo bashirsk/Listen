@@ -20,10 +20,6 @@ class EpisodesController: UITableViewController {
     
     private let cellID = "cellId"
     
-    struct Episode {
-        let title: String
-    }
-    
     var episodes = [Episode]()
     
     override func viewDidLoad() {
@@ -40,7 +36,7 @@ class EpisodesController: UITableViewController {
             switch pResult {
             case .rss(let rssFeed):
                 rssFeed.items?.forEach({ (pRssFeedItem) in
-                    let episode = Episode(title: pRssFeedItem.title ?? "")
+                    let episode = Episode(pFeedItem: pRssFeedItem)
                     self.episodes.append(episode)
                     pCompletion(nil)
                 })
@@ -59,25 +55,30 @@ class EpisodesController: UITableViewController {
     //MARK:- Set up TableView
     
     private func setUpTableView() {
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellID)
+        let nib = UINib(nibName: "EpisodeCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: self.cellID)
         self.tableView.tableFooterView = UIView()
     }
     
     //MARK:- UITableView
     
     override func tableView(_ pTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
+        return self.episodes.count
     }
     
     override func tableView(_ pTableView: UITableView, cellForRowAt pIndexPath: IndexPath) -> UITableViewCell {
-        let cell = pTableView.dequeueReusableCell(withIdentifier: self.cellID, for: pIndexPath)
+        let cell = pTableView.dequeueReusableCell(withIdentifier: self.cellID, for: pIndexPath) as! EpisodeCell
         let episode = self.episodes[pIndexPath.row]
-        cell.textLabel?.text = episode.title
+        cell.episode = episode
         return cell
     }
     
     override func tableView(_ pTableView: UITableView, didSelectRowAt pIndexPath: IndexPath) {
         pTableView.deselectRow(at: pIndexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 134
     }
 
 }
