@@ -20,7 +20,6 @@ class EpisodesController: UITableViewController {
     
     private let cellID = "cellId"
     
-    
     var episodes = [Episode]()
     
     override func viewDidLoad() {
@@ -64,7 +63,7 @@ class EpisodesController: UITableViewController {
     //MARK:- UITableView
     
     override func tableView(_ pTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
+        return self.episodes.count
     }
     
     override func tableView(_ pTableView: UITableView, cellForRowAt pIndexPath: IndexPath) -> UITableViewCell {
