@@ -17,25 +17,25 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpSearchBar()
-        self.setupTableView()
+        setUpSearchBar()
+        setupTableView()
     }
     
     //MARK:- Set up
     
     private func setupTableView() {
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: cellID)
-        self.tableView.tableFooterView = UIView()
+        tableView.register(nib, forCellReuseIdentifier: cellID)
+        tableView.tableFooterView = UIView()
     }
     
     private func setUpSearchBar() {
-        self.definesPresentationContext = true
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.searchController.dimsBackgroundDuringPresentation = false
-        self.searchController.searchBar.delegate = self
-        self.searchController.definesPresentationContext = true 
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.definesPresentationContext = true
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -58,16 +58,16 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ pTableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return  self.podcasts.count > 0 ? 0 : 250
+        return  podcasts.count > 0 ? 0 : 250
     }
     
     override func tableView(_ pTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.podcasts.count
+        return podcasts.count
     }
     
     override func tableView(_ pTableView: UITableView, cellForRowAt pIndexPath: IndexPath) -> UITableViewCell {
         let cell = pTableView.dequeueReusableCell(withIdentifier: cellID, for: pIndexPath) as! PodcastCell
-        let podcast = self.podcasts[pIndexPath.row]
+        let podcast = podcasts[pIndexPath.row]
         cell.podcast = podcast
         return cell
     }
@@ -79,8 +79,8 @@ class PodcastsSearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ pTableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pTableView.deselectRow(at: indexPath, animated: true)
         let episodesController = EpisodesController()
-        let podcast = self.podcasts[indexPath.row]
+        let podcast = podcasts[indexPath.row]
         episodesController.podcast = podcast
-        self.navigationController?.pushViewController(episodesController, animated: true)
+        navigationController?.pushViewController(episodesController, animated: true)
     }
 }

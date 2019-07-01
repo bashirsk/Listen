@@ -13,7 +13,7 @@ extension UIImageView {
     
     func ls_downloadAndCacheImage(with pUrl: String) {
         if let url = URL(string: pUrl) {
-            self.sd_setImage(with: url, completed: nil)
+            sd_setImage(with: url, completed: nil)
         }
     }
 }

@@ -16,15 +16,9 @@ class EpisodeCell: UITableViewCell {
     
     var episode: Episode! {
         didSet {
-            self.pubDateLabel.text = episode.pubDate.ls_setUpDate
-            self.titleLabel.text = episode.title
-            self.descriptionLabel.text = episode.description
+            pubDateLabel.text = episode.pubDate.ls_setUpDate
+            titleLabel.text = episode.title
+            descriptionLabel.text = episode.description
         }
     }
-     
-    
-
-
-    
-    
 }

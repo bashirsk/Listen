@@ -14,18 +14,18 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UINavigationBar.appearance().prefersLargeTitles = true
-        self.view.backgroundColor = .white
-        self.tabBar.tintColor = .purple
-        self.setUpViewControllers()
+        view.backgroundColor = .white
+        tabBar.tintColor = .purple
+        setUpViewControllers()
     }
     
     //MARK:- Set Up Functions
     
     private func setUpViewControllers() {
         self.viewControllers = [
-            self.generateNavigationController(with: PodcastsSearchViewController(), title: "Search", image: UIImage(named: "search")!),
-            self.generateNavigationController(with: ViewController(), title: "Favorites", image: UIImage(named: "favorites")!),
-            self.generateNavigationController(with: ViewController(), title: "Downloads", image: UIImage(named: "downloads")!)
+            generateNavigationController(with: PodcastsSearchViewController(), title: "Search", image: UIImage(named: "search")!),
+            generateNavigationController(with: ViewController(), title: "Favorites", image: UIImage(named: "favorites")!),
+            generateNavigationController(with: ViewController(), title: "Downloads", image: UIImage(named: "downloads")!)
         ]
     }
 

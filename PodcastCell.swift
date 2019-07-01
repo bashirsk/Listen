@@ -18,12 +18,10 @@ class PodcastCell: UITableViewCell {
     
     var podcast: Podcast! {
         didSet {
-            self.trackNameLabel.text = podcast.trackName
-            self.artistNameLabel.text = podcast.artistName
-            self.episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
-            self.podcastImageView.ls_downloadAndCacheImage(with: podcast.artworkUrl600 ?? "")
+            trackNameLabel.text = podcast.trackName
+            artistNameLabel.text = podcast.artistName
+            episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
+            podcastImageView.ls_downloadAndCacheImage(with: podcast.artworkUrl600 ?? "")
         }
     }
-    
-    
 }

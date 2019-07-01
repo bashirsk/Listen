@@ -20,6 +20,6 @@ extension Date {
     var ls_setUpDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM, yyyy"
-       return dateFormatter.string(from: self)
+        return dateFormatter.string(from: self)
     }
 }

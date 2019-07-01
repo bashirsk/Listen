@@ -29,6 +29,5 @@ class APIService {
                 pCompletion([], decodeError)
             }
         }
-
     }
 }
