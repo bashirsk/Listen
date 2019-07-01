@@ -62,6 +62,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descriptionLabel" destination="Oy4-rO-UpE" id="iEn-mS-WlX"/>
+                <outlet property="episodeImageView" destination="UMN-4o-ERB" id="n5J-6R-Wob"/>
                 <outlet property="pubDateLabel" destination="LPE-g8-Xx3" id="MVb-dN-iMt"/>
                 <outlet property="titleLabel" destination="UuW-g0-6Ol" id="RPe-Rh-0Af"/>
             </connections>

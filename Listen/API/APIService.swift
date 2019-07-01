@@ -6,8 +6,8 @@
 //  Copyright © 2019 Bashir Sentongo. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import FeedKit
 
 class APIService {
     
@@ -30,4 +30,23 @@ class APIService {
             }
         }
     }
+    
+    func fetchEpisodes(podcast pPodcast: Podcast, completion pCompletion: @escaping (RSSFeed?, Error?) -> Void) {
+        guard let feedUrl = pPodcast.feedUrl else { return }
+        let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
+        guard let url = URL(string: secureFeedUrl) else { return }
+        let parser = FeedParser(URL: url)
+        parser.parseAsync { (pResult) in
+            switch pResult {
+            case .rss(let rssFeed):
+                pCompletion(rssFeed, nil)
+                break
+            case .failure(let error):
+                pCompletion(nil, error)
+            default:
+                break
+            }
+        }
+    }
+
 }

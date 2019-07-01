@@ -14,7 +14,7 @@ class EpisodesController: UITableViewController {
     var podcast: Podcast! {
         didSet {
             navigationItem.title = podcast.trackName
-            fetchEpisodes { _ in }
+            getEpisodes()
         }
     }
     
@@ -27,27 +27,15 @@ class EpisodesController: UITableViewController {
         setUpTableView()
     }
     
-    private func fetchEpisodes(completion pCompletion: @escaping (Error?) -> Void) {
-        guard let feedUrl = podcast.feedUrl else { return }
-        let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
-        guard let url = URL(string: secureFeedUrl) else { return }
-        let parser = FeedParser(URL: url)
-        parser.parseAsync { (pResult) in
-            switch pResult {
-            case .rss(let rssFeed):
-                rssFeed.items?.forEach({ (pRssFeedItem) in
-                    let episode = Episode(pFeedItem: pRssFeedItem)
-                    self.episodes.append(episode)
-                    pCompletion(nil)
-                })
+    func getEpisodes() {
+        APIService.shared.fetchEpisodes(podcast: podcast) { (pRssFeed, pError) in
+            if pError == nil {
+                if let rssFeed = pRssFeed?.ls_toEpisodes() {
+                    self.episodes = rssFeed
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                break
-            case .failure(let error):
-                pCompletion(error)
-            default:
-                break
             }
         }
     }
