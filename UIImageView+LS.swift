@@ -1,10 +1,11 @@
 //
-//  LS+UIImageView.swift
+//  UIImageView+LS.swift
 //  Listen
 //
-//  Created by Bashir Sentongo on 15/04/2019.
+//  Created by Bashir Sentongo on 02/07/2019.
 //  Copyright © 2019 Bashir Sentongo. All rights reserved.
 //
+
 
 import UIKit
 import SDWebImage

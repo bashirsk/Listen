@@ -63,6 +63,10 @@ class EpisodesController: UITableViewController {
     
     override func tableView(_ pTableView: UITableView, didSelectRowAt pIndexPath: IndexPath) {
         pTableView.deselectRow(at: pIndexPath, animated: true)
+        let episode = episodes[pIndexPath.row]
+                PodcastPlayer.showPodcastPlayer(viewController: self) { (pPodcastPlayer) in
+            pPodcastPlayer.episode = episode
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
