@@ -10,6 +10,7 @@ import Foundation
 import FeedKit
 
 struct Episode {
+    
     let title: String
     let pubDate: Date
     let description: String
@@ -18,7 +19,7 @@ struct Episode {
     init(pFeedItem: RSSFeedItem) {
         self.title = pFeedItem.title ?? ""
         self.pubDate = pFeedItem.pubDate ?? Date()
-        self.description = pFeedItem.description ?? ""
+        self.description = pFeedItem.iTunes?.iTunesSubtitle ?? pFeedItem.description ?? ""
         self.imageUrl = pFeedItem.iTunes?.iTunesImage?.attributes?.href
     }
 }

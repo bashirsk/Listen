@@ -15,7 +15,6 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var episodeImageView: UIImageView!
     
-    
     var episode: Episode! {
         didSet {
             pubDateLabel.text = episode.pubDate.ls_setUpDate
