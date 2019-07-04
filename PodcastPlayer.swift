@@ -11,11 +11,19 @@ import UIKit
 class PodcastPlayer: UIView {
     
     @IBOutlet weak var episodeImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var playAndPauseButton: UIButton!
+    
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.numberOfLines = 2
+        }
+    }
     
     var episode: Episode! {
         didSet {
             titleLabel.text = episode.title
+            authorLabel.text = episode.author
             if let imageUrl = episode.imageUrl {
                 episodeImageView.ls_downloadAndCacheImage(with: imageUrl)
             }
